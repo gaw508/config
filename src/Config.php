@@ -90,7 +90,7 @@ class Config
     {
         foreach (scandir($path) as $file) {
             if (pathinfo($file)['extension'] == 'yml') {
-                Config::loadYaml(__DIR__ . '/autoload/' . $file);
+                Config::loadYaml(rtrim($path, '/') . '/' . $file);
             }
         }
     }

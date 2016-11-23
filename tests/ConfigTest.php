@@ -143,6 +143,42 @@ class ConfigTest extends PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test that the load directory function loads all yaml files in directory
+     */
+    public function testLoadDirectory()
+    {
+        Config::loadDirectory(__DIR__ . '/data');
+
+        $expected = array(
+            'myValue' => 'oki doki',
+            'anotherval' => array(
+                'one' => 'ok',
+                'two' => 'okok',
+                'three' => 'okokok'
+            ),
+            'secondYamlFileConfig' => 'it works!'
+        );
+
+        $not_expected = array(
+            'nonYamlConfigValue'
+        );
+
+        foreach ($expected as $key => $value) {
+            $actual = Config::get($key);
+            $this->assertEquals($value, $actual);
+        }
+
+        foreach ($not_expected as $key) {
+            try {
+                Config::get($key);
+                $this->assertTrue(false);
+            } catch (ConfigException $e) {
+                $this->assertContains('Missing configuration value', $e->getMessage());
+            }
+        }
+    }
+
+    /**
      * Test that the clear all function clears out all config
      *
      * @throws ConfigException
