@@ -1,6 +1,8 @@
 Config - PHP Application Config Library
 =======================================
 
+[![Build Status](https://travis-ci.org/gaw508/config.svg?branch=master)](https://travis-ci.org/gaw508/config)
+
 A library to manage config key value pairs for PHP applications.
 Configuration can be loaded from YAML files.
 
