@@ -1,6 +1,6 @@
 {
     "name": "gaw508/config",
-    "version": "0.1.0",
+    "version": "1.0.0",
     "description": "PHP application configuration library",
     "license": "MIT",
     "authors": [
