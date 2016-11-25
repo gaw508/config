@@ -56,6 +56,10 @@ class Config
      */
     public static function load($config)
     {
+        if (!is_array($config)) {
+            return;
+        }
+
         foreach ($config as $key => $value) {
             static::set($key, $value);
         }
@@ -88,6 +92,12 @@ class Config
      */
     public static function loadDirectory($path)
     {
+        $dir = scandir($path);
+
+        if (!is_array($dir)) {
+            return;
+        }
+
         foreach (scandir($path) as $file) {
             if (pathinfo($file)['extension'] == 'yml') {
                 Config::loadYaml(rtrim($path, '/') . '/' . $file);
